@@ -64,7 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
                     gender = "male";
                     Toast.makeText(getApplicationContext(),"Male selected", Toast.LENGTH_SHORT).show();
                 }
-                else if(selectedId==-2){
+                else if(selectedId==radioSexButton1.getId()){
                     gender="Female";
                     Toast.makeText(getApplicationContext(),"FeMale selected", Toast.LENGTH_SHORT).show();
 
@@ -109,13 +109,15 @@ public class DetailsActivity extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
 //database.child("users").child(userId).child("username").setValue(name)  example
                 FirebaseUser ruser = firebaseAuth.getCurrentUser();
-                String userId = "PDOeyBnfcmMWSnbpl79V76TmdJB2";
+                String userId = ruser.getUid();
 
                 databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put("Gender",gender);
-                String strInsertionval1 = null;
-                hashMap.put("Duedate", strInsertionval1);
+
+                String strInsertionval = "";
+                hashMap.put("Duedate", strInsertionval);
+                String strInsertionval1 = "";
                 hashMap.put("Last Period",strInsertionval1);
 
                 databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -124,6 +126,8 @@ public class DetailsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
                         if(task.isSuccessful())
                         {
+                            Log.e("onClick: ", userId);
+
                             Intent in=new Intent(DetailsActivity.this,StartActivity.class);
                             Toast.makeText(DetailsActivity.this,"Successful",Toast.LENGTH_SHORT).show();
                             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
