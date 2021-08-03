@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".MainActivity">
+   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+       android:layout_marginTop="50dp"
+    android:orientation="vertical"
+    android:layout_centerVertical="true">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        android:background="@drawable/white_border"
+        tools:targetApi="p">
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:hint="Email Address"
+            android:backgroundTint="@color/blue"
+            android:textColorHint="@color/blue"
+            android:textStyle="bold"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"/>
+
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        android:background="@drawable/white_border"
+        tools:targetApi="p">
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:hint="Password"
+
+            android:id="@+id/password"
+            android:backgroundTint="@color/blue"
+            android:textColorHint="@color/blue"
+            android:textStyle="bold"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"/>
+
+
+
+    </FrameLayout>
+    <ProgressBar
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/white"
+        tools:targetApi="lollipop"
+        android:visibility="gone"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:elevation="10dp"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        android:background="@drawable/white_border"
+        tools:targetApi="p">
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:textColor="@color/blue"
+            android:id="@+id/login"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginStart="50dp"
+            android:textAllCaps="false"
+            android:layout_marginEnd="50dp"
+            android:text="Login"
+            android:textSize="20sp"/>
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:elevation="10dp"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        android:background="@drawable/white_border"
+        tools:targetApi="p">
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:textColor="@color/blue"
+            android:id="@+id/register"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginStart="50dp"
+            android:textAllCaps="false"
+            android:layout_marginEnd="50dp"
+            android:text="Register"
+            android:textSize="20sp"/>
+    </FrameLayout>
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forget Password"
+        android:layout_below="@+id/b1"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        />
+
+
+
+</LinearLayout>
+
+
+
+    </RelativeLayout>

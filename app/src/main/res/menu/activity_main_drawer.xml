@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/organizer"
+        android:title="Organizer"
+        android:icon="@drawable/ic_baseline_menu_24"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/calltaxi"
+        android:title="Call Taxi"
+        android:icon="@drawable/ic_baseline_local_taxi_24"
+        app:showAsAction="always"
+        />
+
+
+</menu>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Create New Account"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/blue"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/white_border"
+            tools:targetApi="p">
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="User Name"
+
+                android:backgroundTint="@color/blue"
+                android:textColorHint="@color/blue"
+                android:textStyle="bold"
+                android:inputType="textPersonName"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"/>
+
+
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/white_border"
+            tools:targetApi="p">
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="Email Address"
+
+                android:backgroundTint="@color/blue"
+                android:textColorHint="@color/blue"
+                android:textStyle="bold"
+                android:inputType="textEmailAddress"
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"/>
+
+
+        </FrameLayout>
+        <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        android:outlineAmbientShadowColor="@android:color/darker_gray"
+        android:background="@drawable/white_border"
+        tools:targetApi="p">
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:hint="Address"
+
+            android:backgroundTint="@color/blue"
+            android:textColorHint="@color/blue"
+            android:textStyle="bold"
+            android:inputType="textPostalAddress"
+
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"/>
+
+
+    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/white_border"
+            tools:targetApi="p">
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="Password"
+                android:backgroundTint="@color/blue"
+                android:textColorHint="@color/blue"
+                android:textStyle="bold"
+                android:inputType="textPassword"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"/>
+
+
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/white_border"
+            tools:targetApi="p">
+            <EditText
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="Mobile Number"
+                android:backgroundTint="@color/blue"
+                android:textColorHint="@color/blue"
+                android:textStyle="bold"
+                android:inputType="textPhonetic"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"/>
+
+
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:elevation="10dp"
+            android:outlineAmbientShadowColor="@android:color/darker_gray"
+            android:background="@drawable/blue_border"
+            tools:targetApi="p">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:id="@+id/register"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginStart="50dp"
+                android:textAllCaps="false"
+                android:layout_marginEnd="50dp"
+                android:text="Register"
+                android:textSize="20sp"/>
+        </FrameLayout>
+
+    </LinearLayout>
+</RelativeLayout>

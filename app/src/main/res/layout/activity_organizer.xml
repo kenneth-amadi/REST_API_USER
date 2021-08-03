@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".OrganizerActivity">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="end">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/bar_layout"
+                />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_marginTop="?actionBarSize"
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:background="#0099ff"
+        app:tabIndicatorColor="#ffffff"
+        app:tabSelectedTextColor="#696969"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabTextColor="#ffffff"
+        android:layout_alignParentTop="true">
+
+
+    </com.google.android.material.tabs.TabLayout>
+<androidx.viewpager.widget.ViewPager
+
+android:layout_width="match_parent"
+android:id="@+id/view_pager"
+    android:layout_below="@id/tab_layout"
+android:layout_height="match_parent"
+app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+        </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/activity_main_drawer"
+        app:theme="@style/myNavigationDrawerStyle"
+        tools:ignore="DuplicateIds">
+
+
+    </com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</RelativeLayout>
