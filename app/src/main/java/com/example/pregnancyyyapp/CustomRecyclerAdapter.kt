@@ -5,9 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.single_list_item.view.*
 
 class CustomRecyclerAdapter(ctx: Context?, user: List<User>?) : RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>() {
     private var context = ctx
@@ -22,8 +22,16 @@ class CustomRecyclerAdapter(ctx: Context?, user: List<User>?) : RecyclerView.Ada
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.tag = mUser!![position]
         val currentItem: User = mUser!![position]
-        holder.pName.text = "${currentItem.name} - ${currentItem.userid}"
-        holder.pJobProfile.text = "Job Position: ${currentItem.jobposition}"
+        holder.itemView.nameInput.text = "Name: ${currentItem.name}"
+        //holder.itemView.useridInput.text = "${currentItem.userid}"
+        holder.itemView.AddressInput.text = "Address: ${currentItem.address}"
+        holder.itemView.phoneInput.text = "Mobile: ${currentItem.mobile}"
+        holder.itemView.emailInput.text = "Email: ${currentItem.email}"
+        holder.itemView.roleInput.text = "Role: ${currentItem.role}"
+        holder.itemView.joiningDateInput.text = "Joining Date: ${currentItem.joiningdate}"
+        holder.itemView.qualificationInput.text = "Qualification: ${currentItem.qualification}"
+        holder.itemView.jobPositionInput.text = "Job Position: ${currentItem.jobposition}"
+        holder.itemView.salaryInput.text = "Salary: ${currentItem.salary}"
     }
 
     override fun getItemCount(): Int {
@@ -31,9 +39,6 @@ class CustomRecyclerAdapter(ctx: Context?, user: List<User>?) : RecyclerView.Ada
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var pName: TextView = itemView.findViewById<View>(R.id.pNametxt) as TextView
-        var pJobProfile: TextView = itemView.findViewById<View>(R.id.pJobProfiletxt) as TextView
-
         init {
             itemView.setOnClickListener { view ->
                 val cpu: User = view.tag as User
