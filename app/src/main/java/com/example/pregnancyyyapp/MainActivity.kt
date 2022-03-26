@@ -1,84 +1,53 @@
-package com.example.pregnancyyyapp;
+package com.example.pregnancyyyapp
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+class MainActivity : AppCompatActivity() {
+    private var firebaseAuth: FirebaseAuth? = null
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-import org.jetbrains.annotations.NotNull;
+        firebaseAuth = FirebaseAuth.getInstance()
 
-public class MainActivity extends AppCompatActivity {
-    private EditText mail,password;
-    private ProgressBar progressBar;
+        register.setOnClickListener {
+            startActivity(Intent(this@MainActivity, RegistrationActivity::class.java))
+            finish()
+        }
 
-    private TextView forgetPassword;
-    private FirebaseAuth firebaseAuth;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button registerBtn=findViewById(R.id.register);
-        Button loginBtn=findViewById(R.id.login);
-        mail=findViewById(R.id.email);
-        firebaseAuth=FirebaseAuth.getInstance();
-        password=findViewById(R.id.password);
-        progressBar=findViewById(R.id.progressBar);
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
-                finish();
-            }
-        });
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String tex_email=mail.getText().toString();
-                String tex_password=password.getText().toString();
-                if(TextUtils.isEmpty(tex_email)||TextUtils.isEmpty(tex_password))
-                {
-                    Toast.makeText(MainActivity.this,"All Fields Required",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    login(tex_email,tex_password);
+        login.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                val textEmail = email!!.text.toString()
+                val textPassword = password!!.text.toString()
+                if (TextUtils.isEmpty(textEmail) || TextUtils.isEmpty(textPassword)) {
+                    Toast.makeText(this@MainActivity, "All Fields Required", Toast.LENGTH_SHORT).show()
+                } else {
+                    login(textEmail, textPassword)
                 }
             }
 
-            private void login(String tex_email, String tex_password) {
-                progressBar.setVisibility(View.VISIBLE);
-              firebaseAuth.signInWithEmailAndPassword(tex_email,tex_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()){
-                            Intent intent=new Intent(MainActivity.this,DetailsActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }else
-                        {
-                            Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-
+            private fun login(tex_email: String, tex_password: String) {
+                progressBar!!.visibility = View.VISIBLE
+                firebaseAuth!!.signInWithEmailAndPassword(tex_email, tex_password).addOnCompleteListener { task ->
+                    progressBar!!.visibility = View.GONE
+                    if (task.isSuccessful) {
+                        val intent = Intent(this@MainActivity, Home::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@MainActivity, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     }
-                });
+                }
             }
-        });
-
-
+        })
     }
 }

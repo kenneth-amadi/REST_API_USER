@@ -1,113 +1,80 @@
-package com.example.pregnancyyyapp;
+package com.example.pregnancyyyapp
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_registration.*
 
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.widget.Toolbar;
+class RegistrationActivity : AppCompatActivity() {
+    private var firebaseAuth: FirebaseAuth? = null
+    private var databaseReference: DatabaseReference? = null
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
-import java.util.Objects;
-
-public class RegistrationActivity extends AppCompatActivity {
-    private EditText username,email,address,password,mobile;
-    private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_registration)
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance()
 
-        username=findViewById(R.id.username);
-        email=findViewById(R.id.email);
-        address=findViewById(R.id.address);
-        password=findViewById(R.id.password);
-        mobile=findViewById(R.id.mobile);
-        Button register  =(Button)findViewById(R.id.register);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        login.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
-                final String name=username.getText().toString();
-                final String mail=email.getText().toString();
-                final String adrs=address.getText().toString();
-                final String pwd=password.getText().toString();
-                final String ph=mobile.getText().toString();
-                if(TextUtils.isEmpty(name)||TextUtils.isEmpty(mail)||TextUtils.isEmpty(adrs)||TextUtils.isEmpty(pwd)||TextUtils.isEmpty(ph))
-                {
-                    Toast.makeText(RegistrationActivity.this,"All Fields are Required",Toast.LENGTH_SHORT).show();
-                }
-                else
-                    register(name, mail, adrs, pwd, ph);
-
+        register.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                val textName = username!!.text.toString()
+                val textEmail = email!!.text.toString()
+                val textAddress = address!!.text.toString()
+                val textPassword = password!!.text.toString()
+                val textMobile = mobile!!.text.toString()
+                if (TextUtils.isEmpty(textName) || TextUtils.isEmpty(textEmail) || TextUtils.isEmpty(textAddress) || TextUtils.isEmpty(textPassword) || TextUtils.isEmpty(textMobile)) {
+                    Toast.makeText(this@RegistrationActivity, "All Fields are Required", Toast.LENGTH_SHORT).show()
+                } else register(textName, textEmail, textAddress, textPassword, textMobile)
             }
 
-            private void register(String name, String mail, String adrs, String pwd, String ph) {
-                firebaseAuth.createUserWithEmailAndPassword(mail,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            FirebaseUser ruser=firebaseAuth.getCurrentUser();
-                            String userId=ruser.getUid();
+            private fun register(name: String, mail: String, adrs: String, pwd: String, ph: String) {
+                firebaseAuth!!.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val hashMap = HashMap<String, String>()
+                        val ruser = firebaseAuth!!.currentUser
+                        val userId = ruser!!.uid
 
-                            databaseReference= FirebaseDatabase.getInstance().getReference("Users").child(userId);
-                            HashMap<String,String> hashMap=new HashMap<>();
-                            hashMap.put("userId",userId);
-                            hashMap.put("name",name);
-                            hashMap.put("mail",mail);
-                            hashMap.put("adrs",adrs);
-                            hashMap.put("pwd",pwd);
-                            hashMap.put("ph",ph);
-                            hashMap.put("newdata","");
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId)
 
-                            databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                  Log.e("task",task.toString());
-                                    if(task.isSuccessful())
-                                    {
-                                        Intent in=new Intent(RegistrationActivity.this,MainActivity.class);
-                                        Toast.makeText(RegistrationActivity.this,"Successful",Toast.LENGTH_SHORT).show();
-                                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(in);
-                                    }else
-                                    {
-                                        Toast.makeText(RegistrationActivity.this, Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                        }else
-                        {
-                            Toast.makeText(RegistrationActivity.this, Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
+                        hashMap["userId"] = userId
+                        hashMap["name"] = name
+                        hashMap["mail"] = mail
+                        hashMap["adrs"] = adrs
+                        hashMap["pwd"] = pwd
+                        hashMap["ph"] = ph
+                        hashMap["newdata"] = ""
 
+                        databaseReference!!.setValue(hashMap).addOnCompleteListener { task ->
+                            Log.e("task", task.toString())
+                            if (task.isSuccessful) {
+                                val `in` = Intent(this@RegistrationActivity, Home::class.java)
+                                Toast.makeText(this@RegistrationActivity, "Successful", Toast.LENGTH_SHORT).show()
+                                `in`.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(`in`)
+                            } else {
+                                Toast.makeText(this@RegistrationActivity, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
+                    } else {
+                        Toast.makeText(this@RegistrationActivity, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     }
-                });
+                }
             }
-        });
+        })
     }
 }

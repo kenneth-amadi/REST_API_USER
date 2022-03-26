@@ -9,34 +9,60 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.PregnancyyyApp"
         android:supportsRtl="true">
-        <activity android:name=".DetailsActivity"
-                 android:theme="@style/Theme.PregnancyyyApp.NoActionBar"/>
+
         <activity
-            android:name=".CalltaxiActivity"
-            android:theme="@style/Theme.PregnancyyyApp.NoActionBar" />
+            android:name="com.example.pregnancyyyapp.Home"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name=".OrganizerActivity"
-            android:theme="@style/Theme.PregnancyyyApp.NoActionBar" />
-        <activity android:name=".Mainpage" />
-        <activity
-            android:name=".StartActivity"
-            android:theme="@style/Theme.PregnancyyyApp.NoActionBar" />
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/Theme.PregnancyyyApp.NoActionBar">
+            android:name="com.example.pregnancyyyapp.FirstActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@style/Theme.PregnancyyyApp.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".RegistrationActivity"
-            android:theme="@style/Theme.PregnancyyyApp.NoActionBar" />
+            android:name="com.example.pregnancyyyapp.RegistrationActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@style/Theme.PregnancyyyApp.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.PregnancyyyApp.NoActionBar" />
+            android:name="com.example.pregnancyyyapp.MainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:theme="@style/Theme.PregnancyyyApp.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <array name="colors_array">
-        <item>Checkup</item>
-        <item>Ultrasound</item>
-        <item>Test</item>
-        <item>Other</item>
-    </array>
-</resources>
