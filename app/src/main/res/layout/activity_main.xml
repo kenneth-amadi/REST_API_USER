@@ -14,6 +14,63 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="5dp"
+                android:layout_height="45dp"
+                app:cardBackgroundColor="@color/textColorSecondaryDark" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="5dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="5dp"
+                android:layout_height="45dp"
+                app:cardBackgroundColor="@color/colorAccent" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="5dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="5dp"
+                android:layout_height="45dp"
+                app:cardBackgroundColor="@color/teal_700" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="5dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="5dp"
+                android:layout_height="45dp"
+                app:cardBackgroundColor="@color/yellow" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="5dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="5dp"
+                android:layout_height="45dp"
+                app:cardBackgroundColor="@color/textColorTertiary" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="5dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="5dp"
+                android:layout_height="45dp"
+                app:cardBackgroundColor="@color/viewBackground" />
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
